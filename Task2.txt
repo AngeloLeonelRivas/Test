@@ -1,0 +1,8 @@
+static List<Dictionary<string, object>> SortProducts(List<Dictionary<string, object>> products, string sortKey, bool ascending = true)
+    {
+        var sortedProducts = ascending
+            ? products.OrderBy(p => p[sortKey])
+            : products.OrderByDescending(p => p[sortKey]);
+
+        return sortedProducts.ToList();
+    }

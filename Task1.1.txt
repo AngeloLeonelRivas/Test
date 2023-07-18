@@ -1,0 +1,40 @@
+Test writing a message with the "INFO" level:
+
+Input: LogMessage("application.log", "User logged in", "INFO")
+Expected output in application.log: [2023-04-24 12:34:56] [INFO] User logged in
+
+Test writing a message with the "WARNING" level:
+
+Input: LogMessage("application.log", "Failed login attempt", "WARNING")
+Expected output in application.log: [2023-04-24 12:35:10] [WARNING] Failed login attempt
+
+Test writing a message with a custom level:
+
+Input: LogMessage("application.log", "Request timed out", "CUSTOM")
+Expected output in application.log: [2023-04-24 12:35:25] [CUSTOM] Request timed out
+
+Test writing multiple messages:
+
+Input:
+LogMessage("application.log", "User logged in", "INFO")
+LogMessage("application.log", "Failed login attempt", "WARNING")
+LogMessage("application.log", "Request timed out", "CUSTOM")
+Expected output in application.log:
+[2023-04-24 12:34:56] [INFO] User logged in
+[2023-04-24 12:35:10] [WARNING] Failed login attempt
+[2023-04-24 12:35:25] [CUSTOM] Request timed out
+
+Test writing messages to different log files:
+
+Input:
+LogMessage("application.log", "User logged in", "INFO")
+LogMessage("errors.log", "Failed login attempt", "WARNING")
+Expected output in application.log:
+[2023-04-24 12:34:56] [INFO] User logged in
+Expected output in errors.log:
+[2023-04-24 12:35:10] [WARNING] Failed login attempt
+
+Test writing an empty message:
+
+Input: LogMessage("application.log", "", "INFO")
+Expected output in application.log: [2023-04-24 12:35:30] [INFO]
